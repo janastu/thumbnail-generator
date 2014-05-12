@@ -3,7 +3,7 @@
   - click
 
 * Usage
-$python thumbnail --directory ~/Photos/ --sizes [(120, 120),(500, 500)]
+$python thumbnailer.py --directory ~/Photos/ --sizes [(120, 120),(500, 500)]
 
 After the script has completed execution, there should be a directory under
 ~/Photos named "thumbnail", which would have directories named by the size of
