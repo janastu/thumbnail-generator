@@ -18,13 +18,14 @@ import imghdr
 @click.option('--sizes', default=[(120, 120)], help='Size of the thumbnail')
 def create_thumbnail(directory, sizes):
     for filename in os.listdir(directory):
-        file = directory + filename
-        if os.path.isfile(file) is True:
-            if imghdr.what(file) is not None and imghdr.what(file) == 'jpeg':
+        pathName = os.path.join(directory, filename)
+        if os.path.isfile(pathName) is True:
+            if imghdr.what(pathName) is not None and imghdr.what(
+                    pathName) == 'jpeg':
                 for size in sizes:
                     width, height = size
-                    thumbnail = epeg.scale_image(file.encode('unicode-escape'),
-                                                 width, height, 80)
+                    thumbnail = epeg.scale_image(pathName.encode(
+                        'unicode-escape'), width, height, 80)
                     pathString = "thumbnail/{0}X{1}".format(width, height)
                     dirname = os.path.join(directory, pathString)
                     thumbnailpath = "{0}/{1}".format(dirname, filename)
@@ -32,6 +33,7 @@ def create_thumbnail(directory, sizes):
                         write_thumbnail(thumbnailpath, thumbnail)
                     except IOError:
                         os.makedirs(dirname)
+                        print "Directory created, {0}".format(dirname)
                         write_thumbnail(thumbnailpath, thumbnail)
 
 
