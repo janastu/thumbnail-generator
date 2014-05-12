@@ -4,6 +4,7 @@
 
 * Installation
 $python setup.py install
+
 That will take care of installing the packages listed in the requirements section.
 * Usage
 $python thumbnailer.py --directory ~/Photos/ --sizes [(120, 120),(500, 500)]
